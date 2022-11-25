@@ -25,19 +25,51 @@ class TitanicClassifier():
         self.estimator = None
 
     def read_data(self):
+        r""" Loads the data of the Titanic.
+
+        Loads the titanic data, then splits it into X and y,
+        also dropping the columns in the csv that are not used during the model
+        training.
+        """
         self.TITANIC_TRAIN_DATA = pd.read_csv(r'https://www.openml.org/data/get_csv/16826755/phpMYEkMl')
         self.X = self.TITANIC_TRAIN_DATA.drop(['survived', 'ticket', 'boat', 'body', 'home.dest'], axis = 1)
         self.y = self.TITANIC_TRAIN_DATA['survived'].copy()
     
     def train(self):
+        r""" Trains the titanic model.
+
+        Loads the titanic data, then fits the prediction pipeline
+        and finally dumps the model into the estimators folder.
+        """
         self.read_data()
         self.estimator = TitanicClassifierPipeline().titanic_pipeline.fit(self.X, self.y)
         joblib.dump(self.estimator, self.model_path)
     
     def load_model(self):
+        r""" Loads the trained model from a .pkl file.
+        """
         self.estimator = joblib.load(self.model_path)
     
-    def sink_titanic(self, passanger: Passanger):
+    def sink_titanic(self, passanger: Passanger)->dict:
+        r""" Predicts the probability that a specific passanger will
+        survive after the sinking of the Titanic.
+
+        Adjusts the values of the Passanger instance into a list,
+        and then converts it to a pd.DataFrame that matches the training
+        data of the model and predicts the probability of surviving or
+        dying.
+        Returns a dictionary with the survival prediction and the probability.
+
+        Parameters
+        ----------
+        passanger : Passanger
+            The information of the Titanic Passanger.
+
+        Returns
+        -------
+        dict
+            The response with the survaval prediction and probability.
+        """ 
         X = [
             passanger.pclass,
             passanger.name, 
@@ -67,8 +99,3 @@ class TitanicClassifier():
         print("The Titanic has sunk, getting the survival probability...")
         return {'Will the passanger survive?': self.survived[np.argmax(pred)],
                 'Probability': str(int(round(max(pred[0]), 2)*100))+"%"}
-
-if __name__ == '__main__':
-    a = TitanicClassifier()
-    a.train()
-    a.load_model()
