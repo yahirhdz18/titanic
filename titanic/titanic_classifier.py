@@ -14,8 +14,8 @@ class TitanicClassifier():
 
         self.model_path = Path(__file__).parent.joinpath(Path('estimators\\titanic_classifier.pkl'))
         self.survived = {
-            0: 'dead',
-            1: 'survived',
+            0: 'No',
+            1: 'Yes',
             }
         
         # This attribute will hold the raw training data of the model 
@@ -65,12 +65,8 @@ class TitanicClassifier():
                     ]
              ))
         print("The Titanic has sunk, getting the survival probability...")
-        return {'survived?': self.survived[np.argmax(pred)],
-                'probability': str(int(round(max(pred[0]), 2)*100))+"%"}
-
-
-
-
+        return {'Will the passanger survive?': self.survived[np.argmax(pred)],
+                'Probability': str(int(round(max(pred[0]), 2)*100))+"%"}
 
 if __name__ == '__main__':
     a = TitanicClassifier()

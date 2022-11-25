@@ -23,13 +23,13 @@ class TitanicClassifierPipeline():
                 'sibsp',
                 'parch',
                 'fare'
-            ],
+                ],
             'categories':[
                 'sex',
                 'embarked',
                 'title',
                 'cabin_letter'
-            ],
+                ],
             'skip':[
                 'cabin',
                 'boat',
@@ -37,19 +37,18 @@ class TitanicClassifierPipeline():
                 'home.dest',
                 'ticket',
                 'name'
-            ]
-        }
+                ]
+            }
 
         self.num_pipeline = Pipeline([
             (
                 'imputer',
                 SimpleImputer(strategy='median')
             ),
-                        (
+            (
                 'clean_data',
                 CleanData()
-            )
-        ])
+            )])
 
         self.category_pipeline = Pipeline([
             (
@@ -61,8 +60,7 @@ class TitanicClassifierPipeline():
                 OneHotEncoder(
                     sparse = False,
                     drop = 'first'
-                )
-            )
+            ))
         ])
 
         self.titanic_pipeline = Pipeline([
