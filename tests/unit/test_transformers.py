@@ -3,8 +3,6 @@ import numpy as np
 
 import pandas as pd
 
-import pytest
-
 sys.path.append('./') 
 from titanic.utils.transformers import ReplaceQM
 from titanic.utils.transformers import CleanData
