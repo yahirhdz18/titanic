@@ -10,7 +10,7 @@ class Sex(Enum):
     female= "female"
     male= "male"
 
-    def __str__(self):
+    def __str__(self)->str:
         return str(self.value)
 
 class Embarked(Enum):
@@ -18,7 +18,7 @@ class Embarked(Enum):
     C = 'C'
     Q = 'Q'
 
-    def __str__(self):
+    def __str__(self)->str:
         return str(self.value)
 
 class Passanger(BaseModel):

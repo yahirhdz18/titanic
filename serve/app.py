@@ -16,9 +16,8 @@ async def healthcheck():
 
 @app.on_event("startup")
 async def startup():
-    titanic_classifier.train()
+    titanic_classifier.load_model()
 
 @app.post('/titanic/sink_titanic')
 def extract_name(passanger_features: Passanger):
-    print(type(titanic_classifier))
     return JSONResponse(titanic_classifier.sink_titanic(passanger_features))
