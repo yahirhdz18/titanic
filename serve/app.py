@@ -16,7 +16,10 @@ async def healthcheck():
 
 @app.on_event("startup")
 async def startup():
-    titanic_classifier.load_model()
+    try:
+        titanic_classifier.load_model()
+    except:
+        titanic_classifier.train()
 
 @app.post('/titanic/sink_titanic')
 def extract_name(passanger_features: Passanger):
