@@ -7,8 +7,6 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder
 
-from feature_engine.selection import DropFeatures
-
 from sklearn.linear_model import LogisticRegression
 
 sys.path.append('././')

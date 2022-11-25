@@ -1,14 +1,15 @@
 [tool.poetry]
-name = "train"
-version = "0.1.0"
-description = "Training package for titanic classification model."
+name = "titanic"
+version = "1"
+description = ""
 authors = ["yahirhdz18 <yahir_hm18@hotmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-pandas = "^1.5.1"
-joblib = "^1.2.0"
+fastapi = "^0.87.0"
+path = "^16.5.0"
+pydantic = "^1.10.2"
 scikit-learn = "^1.1.3"
 
 
