@@ -10,12 +10,18 @@ class Sex(Enum):
     female= "female"
     male= "male"
 
+    def __str__(self):
+        return str(self.value)
+
 class Embarked(Enum):
     S ='S' 
     C = 'C'
     Q = 'Q'
 
-class Passager(BaseModel):
+    def __str__(self):
+        return str(self.value)
+
+class Passanger(BaseModel):
     name: str = Field(
         ...,
         min_length = 1,

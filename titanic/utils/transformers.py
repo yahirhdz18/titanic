@@ -27,12 +27,12 @@ class CleanData(BaseEstimator, TransformerMixin):
         return self
     
     def transform(self, X, y=None):
-        X[1] =  X[1].astype('float')
-        X[1] = list(map(lambda x: round(x, 0),  X[1]))
-        X[1] =  X[1].astype('int')
+        X[:,1] =  X[:,1].astype('float')
+        X[:,1] = list(map(lambda x: round(x, 0),  X[:,1]))
+        X[:,1] =  X[:,1].astype('int')
 
-        X[4] =  X[4].astype('float')
-        X[4] = list(map(lambda x: round(x, 0),  X[4]))
+        X[:,4] =  X[:,4].astype('float')
+        X[:,4] = list(map(lambda x: round(x, 0),  X[:,4]))
 
         return X
 
